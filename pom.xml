@@ -16,6 +16,8 @@
 
     <modules>
         <module>user-service</module>
+        <module>topic-service</module>
+        <module>comment-service</module>
     </modules>
 
     <dependencies>
@@ -24,6 +26,14 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-bom</artifactId>
+                <version>2021.0.1</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>

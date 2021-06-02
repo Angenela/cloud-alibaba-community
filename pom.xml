@@ -11,8 +11,9 @@
 
     <properties>
         <spring-cloud-alibaba.version>2.1.1.RELEASE</spring-cloud-alibaba.version>
+        <spring-kafka.version>2.4.0.RELEASE</spring-kafka.version>
         <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
-        <spring-thymeleaf>2.2.2.RELEASE</spring-thymeleaf>
+        <spring-thymeleaf.version>2.2.2.RELEASE</spring-thymeleaf.version>
         <mybatis.version>2.2.0</mybatis.version>
         <mysql-connect.version>5.1.47</mysql-connect.version>
     </properties>

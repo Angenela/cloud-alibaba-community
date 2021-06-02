@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.userservice.dao.UserLoginDao">
+
+
+
+    <insert id="addUserLogin" parameterType="com.example.userservice.pojo.UserLogin">
+      insert into community.user_login (user_login_nam,user_login_pwd)
+      values (#{userLoginNam},#{userLoginPwd})
+   </insert>
+
+    <select id="getUserLogin" parameterType="int" resultType="UserLogin">
+        select *
+        from community.user_login
+        where user_id=#{userId}
+    </select>
+
+
+    <update id="updateUserLogin" parameterType="int">
+        update community.user_login
+        set user_login_nam=${userLoginNam},user_login_pwd=#{userLoginPwd}
+        where user_id=#{userId}
+    </update>
+
+    <delete id="deleteUserLogin" parameterType="int">
+        delete from community.user_login
+        where user_id=#{userId}
+    </delete>
+
+    <select id="queryAllUserLogin" parameterType="com.example.userservice.pojo.UserLogin">
+        select *
+        from community.user_login
+    </select>
+
+
+</mapper>

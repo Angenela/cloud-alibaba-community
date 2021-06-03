@@ -5,8 +5,6 @@ import com.example.userservice.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class UserServiceImpl implements UserService {
     //调用dao层的操作，设置一个set接口，方便Spring管理
@@ -26,5 +24,8 @@ public class UserServiceImpl implements UserService {
         return userDao.getUser(id);
     }
 
+    public void updateUsername(int id, String username) {
+        userDao.updateUsername(id, username);
+    }
 
 }

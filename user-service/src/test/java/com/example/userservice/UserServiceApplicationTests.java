@@ -1,7 +1,6 @@
 package com.example.userservice;
 
 
-import com.example.userservice.pojo.User;
 import com.example.userservice.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +13,7 @@ class UserServiceApplicationTests {
 
     @Test
     void contextLoads() {
-
-        userService.addUser(new User("lqx","123"));
+        userService.updateUsername(1, "lmz");
     }
 
 }

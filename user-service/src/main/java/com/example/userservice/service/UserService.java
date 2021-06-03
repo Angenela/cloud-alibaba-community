@@ -10,6 +10,8 @@ public interface UserService {
     int addUser(User user);
     //    根据Id获取一个用户
     User getUser(int id);
+
+    void updateUsername(int id, String username);
 }
 
 

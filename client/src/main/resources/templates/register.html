@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" th:href="@{layui/css/layui.css}">
+
+    <style>
+
+    </style>
+</head>
+
+<body style="background-color: #FAFAFA">
+
+<div id="register" class="layui-container" style="width: auto">
+
+    <div class="layui-row">
+
+        <div class="layui-col-md10 layui-col-md-offset1">
+            <!--            导航栏-->
+            <div th:insert="~{index::header}"></div>
+
+            <div class="ui horizontal divider" style="font-size: 26px; margin-top: 100px">注册</div>
+
+            <!--            登录表单-->
+            <div class="ui form"
+                 style="width: 500px;height: 500px;margin-left: 570px;margin-top: 50px">
+
+                <!--                用户名-->
+                <div class="field">
+                    <label>用户名：</label>
+                    <input v-model="username" type="text">
+                </div>
+
+                <!--                密码-->
+                <div class="field" style="margin-top: 30px">
+                    <label>密码：</label>
+                    <input v-model="password" type="password">
+                </div>
+
+                <!--                验证密码-->
+                <div class="field" style="margin-top: 30px">
+                    <label>验证密码：</label>
+                    <input v-model="checkPassword" type="password">
+                </div>
+
+                <!--                性别-->
+                <div class="inline fields" style="margin-top: 30px">
+                    <label>性别：</label>
+
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input type="radio" id="男" value="男" v-model="sex" name="frequency" checked="checked">
+                            <label>男</label>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input type="radio" id="女" value="女" v-model="sex" name="frequency">
+                            <label>女</label>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input type="radio" id="不显示" value="不显示" v-model="sex" name="frequency">
+                            <label>不显示</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="ui button" type="submit" style="margin-top: 30px" v-on:click="register">注册</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
+
+<script th:src="@{js/jquery.min.js}" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script th:src="@{layui/layui.all.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    // vue
+    new Vue({
+        el: '#register',
+        data: {
+            username: "",
+            password: "",
+            checkPassword: "",
+            sex: "男"
+        },
+        methods: {
+            register: function () {
+                // 验证两次输入的密码是否一致
+                if (this.password !== this.checkPassword) {
+                    layer.open({
+                        title: '错误'
+                        , content: '两次输入的密码不一致！'
+                    });
+                    return
+                }
+
+                // 验证用户名和密码的输入是否为空格和null
+                if (this.checkNullAndSpace(this.password) || this.checkNullAndSpace(this.username)
+                    || this.checkNullAndSpace(this.checkPassword)) {
+                    layer.open({
+                        title: '错误'
+                        , content: '用户名或密码为空！'
+                    });
+                    return
+                }
+
+                console.log(this.username)
+                console.log(this.password)
+                console.log(this.checkPassword)
+                console.log(this.sex)
+            },
+
+            checkNullAndSpace: function (text) {
+                if (text == null || text.replace(/^\s+,""/).replace(/^\s+$/, "") == '')
+                    return true
+                else return false
+            }
+        }
+    })
+</script>
+
+</html>

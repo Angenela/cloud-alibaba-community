@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="@10.70.121.162">
+<dataSource name="MySQL - @10.70.121.162">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.19">
     <root id="1">
       <ServerVersion>8.0.25</ServerVersion>

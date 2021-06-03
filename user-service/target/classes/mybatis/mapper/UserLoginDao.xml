@@ -16,5 +16,8 @@
         where  id = #{id}
     </select>
 
+    <select id="updateUsername">
+        update user set username = #{username} where id = #{id}
+    </select>
 
 </mapper>

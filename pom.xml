@@ -23,6 +23,7 @@
         <module>topic-service</module>
         <module>comment-service</module>
         <module>client</module>
+        <module>common-api</module>
     </modules>
 
     <dependencies>

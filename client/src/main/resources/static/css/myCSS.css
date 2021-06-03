@@ -1,0 +1,57 @@
+#description {
+    font-size: 33px;
+    padding-left: 35px;
+}
+#description .s{
+    color: #2185D0;
+}
+#description .w{
+    color: rgb(201,98,30);
+}
+#description .q{
+    color: rgb(102,102,102);
+}
+
+#firstImg{
+    width: 100%;
+    height: 660px;
+}
+
+#content{
+    margin-top: 100px;
+}
+#content .twelve .grid{
+    margin-top: 30px;
+}
+#content .twelve .grid .three{
+    display: inline-block;
+}
+#content .twelve .grid .twelve{
+    font-size: 20px;
+    line-height: 33px;
+    font-weight: bolder;
+}
+
+#timeLine .horizontal{
+    margin-top: 150px;
+}
+#timeLine .desc{
+    margin-top: 30px;
+}
+
+#pageTail{
+    margin-top: 150px;
+    background: rgb(242,243,245);
+    height: 250px;
+}
+#pageTail .twelve{
+    font-weight: bolder;
+}
+#pageTail .twelve > div{
+    margin-bottom: 20px;
+}
+
+.popup {
+    width: 500px !important;
+}
+

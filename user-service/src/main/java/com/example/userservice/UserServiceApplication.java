@@ -11,9 +11,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 public class UserServiceApplication {
 
 	public static void main(String[] args) {
-		ConfigurableApplicationContext context = SpringApplication.run(UserServiceApplication.class, args);
-		ConfigurableEnvironment environment = context.getEnvironment();
-		System.out.println(environment.getProperty("spring.datasource.username"));
+		SpringApplication.run(UserServiceApplication.class, args);
 	}
 
 }

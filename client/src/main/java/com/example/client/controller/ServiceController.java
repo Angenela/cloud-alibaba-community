@@ -1,7 +1,7 @@
 package com.example.client.controller;
 
+import com.example.commonapi.pojo.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
@@ -20,7 +20,7 @@ public class ServiceController {
     private LoadBalancerClient loadBalancerClient;
 
     @Autowired
-    private ObjectMapper objectMapper;
+    private ObjectMapper objectMapper; 
 
     @PostMapping
     public String register(HttpServletRequest request, User user) {
@@ -29,7 +29,6 @@ public class ServiceController {
         String path = String.format("http://%s:%s/%s", serviceInstance.getHost(), serviceInstance.getPort(), "user");
 
         String status = restTemplate.postForObject(path, user, String.class);
-//        objectMapper.readValue(status, )
         request.setAttribute("status", status);
 
         return "redirect:/";

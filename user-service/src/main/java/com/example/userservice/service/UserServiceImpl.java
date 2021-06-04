@@ -1,7 +1,7 @@
 package com.example.userservice.service;
 
+import com.example.commonapi.pojo.User;
 import com.example.userservice.dao.UserDao;
-import com.example.userservice.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

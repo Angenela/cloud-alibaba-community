@@ -1,6 +1,6 @@
 package com.example.userservice.dao;
 
-import com.example.userservice.pojo.User;
+import com.example.commonapi.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

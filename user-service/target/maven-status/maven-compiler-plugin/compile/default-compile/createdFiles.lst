@@ -1,7 +1,6 @@
-com\example\userservice\controller\UserLoginController.class
 com\example\userservice\constant\Status.class
 com\example\userservice\dao\UserDao.class
-com\example\userservice\UserServiceApplication.class
-com\example\userservice\service\UserService.class
 com\example\userservice\service\UserServiceImpl.class
+com\example\userservice\UserServiceApplication.class
 com\example\userservice\pojo\User.class
+com\example\userservice\service\UserService.class

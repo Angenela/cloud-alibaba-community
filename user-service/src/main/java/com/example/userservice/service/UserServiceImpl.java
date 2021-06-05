@@ -19,12 +19,26 @@ public class UserServiceImpl implements UserService {
         return userDao.addUser(user);
     }
 
-    public User getUser(int id) {
-        return userDao.getUser(id);
+    public User getUserByUsername(String username) {
+        return userDao.getUserByUsername(username);
     }
+
 
     public void updateUsername(int id, String username) {
         userDao.updateUsername(id, username);
+    }
+
+    public void deleteUser(int id) {
+        userDao.deleteUser(id);
+    }
+
+    public boolean existUsername(String username) {
+        return userDao.existUsername(username) != null ? true :false;
+    }
+
+    public void updateUserPassword(String username, String password) {
+        userDao.updateUserPassword(username,password);
+
     }
 
 }

@@ -13,7 +13,7 @@ class UserServiceApplicationTests {
 
     @Test
     void contextLoads() {
-        userService.updateUsername(9, "lmz");
+        System.out.println(userService.existUsername("lmz"));
     }
 
 }

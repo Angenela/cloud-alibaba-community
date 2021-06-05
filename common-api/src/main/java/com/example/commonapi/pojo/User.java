@@ -12,12 +12,6 @@ public class User {
     private String time;
     private String img;
 
-    public User(String account, String password) {
-        this.account = account;
-        this.password = password;
-    }
-
-
     public int getId() {
         return id;
     }

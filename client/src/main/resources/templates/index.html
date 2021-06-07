@@ -18,52 +18,24 @@
 
         <div class="layui-col-md10 layui-col-md-offset1">
             <!--        导航栏-->
-            <ul class="layui-nav" th:fragment="header">
-                <li class="layui-nav-item">
-                    <a th:href="@{/}">主页</a>
-                </li>
-
-                <li class="layui-nav-item">
-                    <a href="">热门</a>
-                </li>
-
-                <li class="layui-nav-item">
-                    <a href="">分类</a>
-                </li>
-
-                <li class="layui-nav-item" style="margin-right: 600px">
-                    <a href="">发表文章</a>
-                </li>
-
-                <li class="layui-nav-item" style="margin-right: 250px">
-                    <div class="ui icon input">
-                        <i class="search icon"></i>
-                        <input type="text" placeholder="搜索...">
-                    </div>
-                </li>
-
-                <li class="layui-nav-item">
-                    <a th:href="@{/login}">
-                        <i class="layui-icon layui-icon-username" style="font-size: 25px;"></i>
-                    </a>
-                </li>
-            </ul>
+            <div th:insert="component/header.html::header('主页')"></div>
 
             <!--            视频，轮播图-->
             <div class="layui-row layui-col-space10" style="margin-top: 5px">
                 <!--         首页视频-->
                 <video id="video" class="layui-col-md8" muted controls loop autoplay>
-                    <source src="https://angenela.oss-cn-shenzhen.aliyuncs.com/video/Everything%20Allright.mp4" type="video/mp4">
+                    <source src="https://angenela.oss-cn-shenzhen.aliyuncs.com/video/Everything%20Allright.mp4"
+                            type="video/mp4">
                 </video>
 
                 <div class="layui-carousel layui-col-md2">
-                    <img th:src="@{image/arknights/1.jpg}" style="width: 515px; height: 292px">
+                    <img th:src="@{images/arknights/1.jpg}" style="width: 515px; height: 292px">
 
                     <div id="carousel1" class="layui-carousel" style="margin-top: 5px">
                         <div carousel-item>
-                            <img th:src="@{image/arknights/2.jpg}" style="width: 515px; height: 292px">
-                            <img th:src="@{image/arknights/3.jpg}" style="width: 515px; height: 292px">
-                            <img th:src="@{image/arknights/4.jpg}" style="width: 515px; height: 292px">
+                            <img th:src="@{images/arknights/2.jpg}" style="width: 515px; height: 292px">
+                            <img th:src="@{images/arknights/3.jpg}" style="width: 515px; height: 292px">
+                            <img th:src="@{images/arknights/4.jpg}" style="width: 515px; height: 292px">
                         </div>
                     </div>
                 </div>
@@ -79,10 +51,11 @@
 
 <script th:src="@{js/jquery.min.js}" crossorigin="anonymous"></script>
 <script th:src="@{semantic/semantic.min.js}"></script>
-<script th:src="@{layui/layui.all.js}"></script>
+<script th:src="@{layui/layui.js}"></script>
 <script th:src="@{js/vue.js}"></script>
-<script th:src="@{js/axio.js}"></script>
+<script th:src="@{js/axios.js}"></script>
 <script>
+    // 轮播图
     layui.use('carousel', function () {
         var carousel = layui.carousel;
         //建造实例
@@ -94,6 +67,52 @@
             //,anim: 'updown' //切换动画方式
         });
     });
+
+    // 用户下拉菜单
+    layui.use('dropdown', function () {
+        var dropdown = layui.dropdown
+        dropdown.render({
+            elem: '#user',
+            id: 'user',
+            trigger: 'hover',
+            data: [
+                {
+                    title: '发布文章',
+                    id: 100,
+                    href: '#'
+                },
+                {
+                    title: '文章管理',
+                    id: 101,
+                    href: 'https://www.layui.com/' //开启超链接
+                    // , target: '_blank' //新窗口方式打开
+                },
+                {
+                    title: '设置',
+                    id: 102,
+                    child: [
+                        {
+                            title: '修改密码',
+                            id: 1020,
+                            href: '/user/password',
+                        },
+                        {
+                            title: '上传头像',
+                            id: 1020,
+                            href: '/user/image',
+                        }
+                    ]
+                },
+                {
+                    title: '退出登录',
+                    href: '/logout',
+                    id: 103
+                },
+            ]
+        });
+    })
+
+    //
 </script>
 
 </html>

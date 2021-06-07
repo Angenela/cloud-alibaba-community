@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/editor/css/editormd.min.css}"/>
+</head>
+<body>
+
+<div id="editor">
+    <!-- Tips: Editor.md can auto append a `<textarea>` tag -->
+    <textarea style="display:none;">### Hello Editor.md !</textarea>
+</div>
+
+<script th:src="@{/js/jquery.min.js}" crossorigin="anonymous"></script>
+<script th:src="@{/editor/editormd.min.js}"></script>
+<script th:src="@{/js/vue.js}"></script>
+<script th:src="@{/js/axios.js}"></script>
+<script type="text/javascript">
+    var editor = editormd("editor", {
+        imageUpload: true,
+        imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+        imageUploadURL: "/image/upload",
+        width: "100%",
+        height: "700px",
+        markdown: "xxxx",     // dynamic set Markdown text
+        path: "/editor/lib/"  // Autoload modules mode, codemirror, marked... dependents libs path
+    });
+</script>
+
+</body>
+</html>

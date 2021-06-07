@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <link rel="stylesheet" th:href="@{semantic/semantic.min.css}">
+    <link rel="stylesheet" th:href="@{layui/css/layui.css}">
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+<!--        导航栏-->
+<ul class="layui-nav" th:fragment="header(active)">
+    <li th:class="${active == '主页' ? 'layui-nav-item layui-this' : 'layui-nav-item'}">
+        <a th:href="@{/}">主页</a>
+    </li>
+
+    <li th:class="${active == '热门' ? 'layui-nav-item layui-this' : 'layui-nav-item'}">
+        <a href="">热门</a>
+    </li>
+
+    <li th:class="${active == '分类' ? 'layui-nav-item layui-this' : 'layui-nav-item'}" style="margin-right: 600px">
+        <a href="">分类</a>
+    </li>
+
+    <li class="layui-nav-item" style="margin-right: 250px">
+        <div class="ui icon input">
+            <i class="search icon"></i>
+            <input type="text" placeholder="搜索...">
+        </div>
+    </li>
+
+    <li th:class="${active == '用户' ? 'layui-nav-item layui-this' : 'layui-nav-item'}">
+        <a th:if="${session.user == null}" th:href="@{/login}">
+            <i class="layui-icon layui-icon-username" style="font-size: 25px;"></i>
+        </a>
+        <a id="user" th:if="${session.user != null}" th:href="@{/user}">
+            <img class="ui avatar image"
+                 th:if="${session.user.img == null}"
+                 th:src="@{images/default.jpg}">
+            <img class="ui avatar image"
+                 th:if="${session.user.img != null}"
+                 th:src="@{session.user.img}">
+            <span th:if="${session.user != null}" th:text="${session.user.username}"></span>
+        </a>
+    </li>
+</ul>
+
+</body>
+
+<script th:src="@{js/jquery.min.js}" crossorigin="anonymous"></script>
+<script th:src="@{semantic/semantic.min.js}"></script>
+<script th:src="@{layui/layui.js}"></script>
+<script th:src="@{js/vue.js}"></script>
+<script th:src="@{js/axios.js}"></script>
+
+</html>

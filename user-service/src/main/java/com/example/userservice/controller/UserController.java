@@ -28,7 +28,7 @@ public class UserController {
         UserStatusDTO userStatus = new UserStatusDTO();
 
         try {
-            if (userService.existUsername(user.getUsername())){
+            if (userService.existUsername(user.getUsername())) {
                 userStatus.setStatus(UserStatus.USER_EXIST.getStatus());
                 logger.warn("POST /user username: " + user.getUsername() + " 已存在");
                 return jsonService.writeValueAsString(userStatus);
@@ -45,61 +45,20 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public String getUserByUsername(@RequestParam("username") String username) throws JsonProcessingException {
+    public String getUserByUsername(String username) throws JsonProcessingException {
         logger.info("GET /user\t" + "username: " + username);
         UserStatusDTO userStatus = new UserStatusDTO();
 
 
-        try{
-             User user = userService.getUserByUsername(username);
-             if (user==null){
-                 userStatus.setStatus(UserStatus.USER_NOT_EXIST.getStatus());
-                 return jsonService.writeValueAsString(userStatus);
-             }
-             userStatus.setStatus(UserStatus.USER_EXIST.getStatus());
-             userStatus.setUser(user);
-        }catch (Exception e){
-            logger.error("用户获取失败，系统出现错误", e);
-            userStatus.setStatus(SystemStatus.SYSTEM_ERROR.getStatus());
-        }
-
-        return jsonService.writeValueAsString(userStatus);
-    }
-
-//    @GetMapping("/user")
-//    public String getUser(@RequestParam("id") int id) throws Exception {
-//        User user;
-//        try {
-//            user = userService.getUser(id);
-//        } catch (Exception exception) {
-//            logger.error("获取用户失败", exception);
-//            return UserStatus.USER_GET_FAILURE.toString();
-//        }
-//        return jsonService.writeValueAsString(user);
-//    }
-
-//    @PutMapping("/user")
-//    public String updateUsername(int id, String username) throws JsonProcessingException {
-//        userService.updateUsername(id, username);
-//        return jsonService.writeValueAsString(2);
-//    }
-
-    @PutMapping("/user")
-    public String updateUserPassword(@RequestParam("username") String username,@RequestParam("password") String password) throws JsonProcessingException {
-        logger.info("PUT /user\t username:"+username+"\tpassword:"+password);
-
-        UserStatusDTO userStatus = new UserStatusDTO();
-
         try {
-            if(password.equals("")){
-                userStatus.setStatus(UserStatus.USER_PASSWORD_EMPTY.getStatus());
+            User user = userService.getUserByUsername(username);
+            if (user == null) {
+                userStatus.setStatus(UserStatus.USER_NOT_EXIST.getStatus());
                 return jsonService.writeValueAsString(userStatus);
             }
-            userService.updateUserPassword(username,password);
-            User user=userService.getUserByUsername(username);
+            userStatus.setStatus(UserStatus.USER_EXIST.getStatus());
             userStatus.setUser(user);
-
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("用户获取失败，系统出现错误", e);
             userStatus.setStatus(SystemStatus.SYSTEM_ERROR.getStatus());
         }
@@ -107,9 +66,21 @@ public class UserController {
         return jsonService.writeValueAsString(userStatus);
     }
 
+    @PostMapping("/user/password")
+    public String updateUserPassword(String username, String password) throws JsonProcessingException {
+        logger.info("Post /user\t username:" + username + "\tpassword:" + password);
 
+        UserStatusDTO userStatus = new UserStatusDTO();
+        try {
+            userService.updateUserPassword(username, password);
+            User user = userService.getUserByUsername(username);
+            userStatus.setStatus(UserStatus.USER_UPDATE_PASSWORD_SUCCESS.getStatus());
+            userStatus.setUser(user);
+        } catch (Exception e) {
+            logger.error("用户获取失败，系统出现错误", e);
+            userStatus.setStatus(SystemStatus.SYSTEM_ERROR.getStatus());
+        }
 
-
-
-
+        return jsonService.writeValueAsString(userStatus);
+    }
 }
